@@ -1,0 +1,14 @@
+git init
+git config user.name skyfish540
+git config user.email 542660032@qq.com
+git config --global user.name lovefish540
+git config --global user.email 542660032@qq.com
+git status
+git add hello.java
+git commit --m "hhhhhh" hello.java
+git log
+git reflog
+git log --pretty=oneline
+git reset --hard hello.java
+git diff HEAD hello.java
+git rm hw.txt
