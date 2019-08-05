@@ -12,3 +12,7 @@ git log --pretty=oneline
 git reset --hard hello.java
 git diff HEAD hello.java
 git rm hw.txt
+
+
+Almost done, @skyfish540! To complete your GitHub sign up, we just need to verify your email address: 542660032@qq.com.
+Verify email address
