@@ -1,0 +1,130 @@
+杨飞  13051058827
+====================================================
+教学目的：
+  1、对前期技术进行回顾、总结、应用、深化
+  2、完成P2P项目的开发
+  3、掌握分布式技术(maven、redis、linux、dubbo、Git、Nginx)
+  4、掌握微服务技术(springboot、springcloud)
+====================================================
+前期所学技术：
+  1、JavaSE：安装JDK、标识符、变量、运算符、控制语句、方法、数组
+             面向对象(封装、继承、多态)、异常、文件和流、集合、线程、网络编程、反射、JDK新特性
+  2、数据库(mysql、oracle、DB2、DM)：数据结构(表、索引、序列、存储过程、游标等)、sql语句
+     JDBC:五步走
+     Xml：了解语法。配置文件、存储数据、传输数据。
+  3、JavaWeb：HTML、css、JavaScript、Jquery、ajax、bootstrap
+              servlet、jsp
+  4、流行框架：
+	      mybatis：sql映射、客户端程序、配置文件
+              springMVC: Controller
+	      spring：整合(类、数据库、配置文件:IOC)、AOP
+  5、分布式技术：maven(管理依赖、构建项目)、redis(分布式缓存技术、五种数据类型、主从复制、哨兵模式、跟spring集成)、linux(常用命令)、dubbo(服务提供者、服务消费者、服务中注册中心)、Git、Nginx
+  6、微服务技术：springboot、springcloud
+====================================================
+Git：一种分布式的版本控制工具。管理代码，记录每次的修改、把分散的代码方便地合并在一起。把每次修改的代码生成唯一的一个版本号。
+     集中式的：SVN、CVS、VSS等。服务器是整个系统的核心。
+               缺点：只能运行在内网中、
+	             过分依赖服务器，容易出现单点故障
+
+     分布式的：Git、BitKeeper等.可以在外网中使用。
+
+     Git产生于2005产生，使用C语言开发，linus开发的。是linux的创始人。
+     Git命令跟linux命令完全兼容。
+     Github于2008年。
+====================================================
+Git安装：windows、linux
+     
+     三个分区：
+	工作区：本地磁盘目录，一般是指工作空间。
+	暂存区：临时存储空间
+	本地库：存储在本地库中的文件都会生成备份的一份，并且生成一个唯一版本号。
+====================================================
+Git的本地操作：
+     1、把目录初始化为Git版本库：git init
+     2、设置签名：
+		  仓库级别的签名：
+                    git config user.name yangaofei
+                    git config user.email yangaofei@163.com
+		  用户级别的签名：
+		    git config --global user.name yangaofei
+                    git config --global user.email yangaofei@163.com
+		  就近原则。
+     3、查看版本库的状态：git status
+     4、把工作区中的文件添加到暂存区：git add HelloWorld.java
+     5、把文件从暂存区中撤回：git rm --cached HelloWorld.java
+     6、把文件从暂存区提交到本地库：git commit HelloWorld.java
+			            git commit --m "edit by yangaofei 111" HelloWorld.java
+     
+     7、查看文件的提交日志：
+        git log  :空格--向下翻页，b---向上翻页，q---退出查看
+        git log --pretty=oneline
+	git log --oneline
+	git reflog
+     8、把文件前进或回退到指定版本：
+        git reset --hard e577dd5034bb2ae8f6382077beba7d5ba2a0f939
+   
+        找回已经删除的文件：回退到文件存在时的最新版本，前提是此文件已经提交过本地库。
+     
+     9、比较工作区中的文件和本地库中指定版本文件的区别：
+        git diff e577dd5 HelloWorld.java
+	git diff HEAD HelloWorld.java
+       
+     10、从工作区和暂存区删除文件：
+        方式一：先从工作区删除，把删除状态添加到暂存区，再把删除状态提交到本地库。
+	方式二：先从工作区和暂存区删除，再把删除状态提交到本地库。
+	        git rm HW.txt
+========================================================================
+Git远程操作：
+     1、注册账号：使用邮箱、验证；登录Github。
+     2、把本地库推送到远程库：
+        1)、在Github上创建远程库：
+	    远程仓库：Public----所有人都可以查看和下载，但是需要授权才能向仓库推送内容。
+	              Private---所有人都必须经过授权才能查看、下载和推送内容。
+
+		      https://github.com/yangaofei/usermgr.git
+
+        2)、给远程库起别名：
+	    查看远程库别名：git remote -v
+	    给远程库起别名：git remote add usermgr_remote https://github.com/yangaofei/usermgr.git
+	    删除远程库别名：git remote remove usermgr_remote
+
+	3)、把本地库推送到远程库：
+	    git push usermgr_remote master
+
+      3、从远程库克隆远程库到本地：
+	    git clone https://github.com/yangaofei/usermgr.git
+	    把远程库原样下载到本地
+	    自动初始化为本地库
+	    自动给远程库url起别名origin
+      4、把本地更新内容推送到远程库：
+            git push usermgr_remote master
+      5、从远程库抓取更新内容到本地：
+            git pull origin master
+
+	    错误码：500--后台Java代码异常，404--资源未找到，403--权限不足
+
+      6、仓库所有者邀请用户加入开发团队：
+            仓库所有者登录Github，打开仓库，点击settings：打开Collaborators，进行邀请。
+	    被邀请者登录Github，打开邀请链接，接受邀请。
+      7、解决冲突：
+            解决冲突之后的commit，不能带文件名。
+
+	    修改代码之前，一定要更新到服务器的最新代码。
+==============================================================
+IDEA集成Git：eclipse、myeclipse等集成开发工具
+       1、把Git集成到IDEA中:Settings-->Version Control-->Git
+       2、把IDEA中的项目初始化为本地库：
+            设置Git忽略的文件(.gitconfig)
+       3、把IDEA项目中的代码添加到暂存区：
+           Git--->Add
+       4、把暂存区中的代码提交到本地库：
+           Git--->Commits Direct...
+       5、把IDEA中的项目推送到远程库：
+           Import into ....-->Share Project...
+       6、把DIEA中更新的内容推送到远程库：
+           Git-->Push
+       7、从远程库克隆项目到本地：
+           File-->New-->Project from Version Control-->Git
+	   设置JDK
+       8、解决冲突：
+          
